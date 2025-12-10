@@ -1,0 +1,111 @@
+@use "sass:map";
+@use "variables" as *;
+
+// Responsive Mixins
+@mixin mq-up($breakpoint: md) {
+  @media #{map.get($breakpoint-up, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-down($breakpoint: md) {
+  @media #{map.get($breakpoint-down, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-devices($breakpoint: laptop) {
+  @media #{map.get($breakpoint-devices, $breakpoint)} {
+    @content;
+  }
+}
+
+// Common Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-style {
+  padding-top: 1.5rem; // 15px = 1.5rem (10px = 1rem)
+  padding-right: clamp(3rem, 8vw, 3.48rem); // 37.5rem base: 3rem, max at 43.5rem: 3.48rem
+  padding-bottom: 1.5rem; // 15px = 1.5rem (10px = 1rem)
+  padding-left: clamp(3rem, 8vw, 3.48rem); // 37.5rem base: 3rem, max at 43.5rem: 3.48rem
+  border: none;
+  border-top-left-radius: 5rem; // 50px / 10px = 5rem
+  border-top-right-radius: 5rem; // 50px / 10px = 5rem
+  border-bottom-right-radius: 5rem; // 50px / 10px = 5rem
+  border-bottom-left-radius: 5rem; // 50px / 10px = 5rem
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 1.1rem; // 11px / 10px = 1.1rem
+}
+
+// Animation Mixins
+@mixin slide-animation($duration: 0.3s) {
+  transition: all $duration ease;
+}
+
+@mixin hover-lift {
+  &:hover {
+    transform: translateY(-0.5rem); // -5px / 10px = -0.5rem
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2); // 10px = 1rem, 30px = 3rem
+  }
+}
+
+// Grid Mixins
+@mixin responsive-grid($columns-mobile: 1, $columns-tablet: 2, $columns-desktop: 3) {
+  display: grid;
+  row-gap: 2rem; // 20px = 2rem (10px = 1rem)
+  column-gap: clamp(2rem, 5.33vw, 2.32rem); // 37.5rem base: 2rem, max at 43.5rem: 2.32rem
+
+  grid-template-columns: repeat($columns-mobile, 1fr);
+
+  @include mq-devices(tablet) {
+    grid-template-columns: repeat($columns-tablet, 1fr);
+  }
+
+  @include mq-devices(laptop) {
+    grid-template-columns: repeat($columns-desktop, 1fr);
+  }
+}
+
+
+@font-face {
+  font-family: "Yu Gothic";
+  src: url("../fonts/yu-gothic.eot");
+  src: url("../fonts/yu-gothic.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/yu-gothic.woff")format("woff"),
+    url("../fonts/yu-gothic.woff2")format("woff2"),
+    url("../fonts/yu-gothic.ttf")format("truetype"),
+    url("../fonts/yu-gothic.svg#Yu Gothic")format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans CJK JP";
+  src: url("../fonts/NotoSansCJKjp-Regular.ttf")format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans CJK JP";
+  src: url("../fonts/NotoSansCJKjp-Medium.ttf")format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans CJK JP";
+  src: url("../fonts/NotoSansCJKjp-Light.ttf")format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

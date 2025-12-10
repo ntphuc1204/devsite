@@ -1,0 +1,107 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "sass:color";
+
+.header {
+    width: 100%;
+    max-width: 144rem;
+    background: #00143c;
+    padding: 1.6rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.header__inner {
+    max-width: 144rem;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo-link {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.header__nav {}
+
+.header__menu {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header__item {
+    position: relative;
+}
+
+.header__link {
+    color: #fff;
+    font-size: 1.4rem;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.header__item--dropdown .header__dropdown,
+.header__lang .header__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 16rem;
+    background: #0f214d;
+    border-radius: 0.4rem;
+    padding: 1rem 0;
+    display: none;
+    list-style: none;
+}
+
+.header__item--dropdown:hover .header__dropdown,
+.header__lang:hover .header__dropdown {
+    display: block;
+}
+
+.header__dropdown-item a {
+    display: block;
+    padding: 0.8rem 1.6rem;
+    color: #fff;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.header__dropdown-item a:hover {
+    background: #1b2d64;
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header__lang-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.header__cta {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: #47ffa5;
+    color: #00143c;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4rem;
+}

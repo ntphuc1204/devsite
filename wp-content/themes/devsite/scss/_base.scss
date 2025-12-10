@@ -1,0 +1,240 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Reset CSS
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+  font-size: 2.67vw; // 1rem = 10px for easier calculations
+  scroll-behavior: smooth;
+
+  @include mq-down(md) {
+    -webkit-user-select: none; /* Safari, Chrome */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
+
+    ::target-text {
+      background: transparent !important;
+    }
+
+    ::-webkit-text-highlight {
+      background: transparent !important;
+    }
+
+    ::selection {
+      background: transparent !important;
+    }
+  }
+
+  @include mq-up(xl) {
+    font-size: 10px;
+  }
+
+  @include mq-devices(laptop) {
+    font-size: 0.6944vw;
+  }
+
+  @include mq-devices(tablet) {
+    font-size: 0.6944vw;
+  }
+
+  // @include mq-devices(mtablet) {
+  //   font-size: 0.81vw;
+  // }
+
+  // @include mq-down(md) {
+  //   /* A scrollbar with a gray thumb and a transparent track */
+  //   /* Not yet supported in Safari and other WebKit-based iOS browsers */
+  //   scrollbar-color: gray #5c6d7c;
+
+  //   &::-webkit-scrollbar {
+  //     width: 3px;
+  //     background: rgba($color: #5c6d7c, $alpha: 0.2);
+  //     margin: 100px;
+  //     border-radius: 999px;
+  //   }
+
+  //   &::-webkit-scrollbar-thumb {
+  //     background: rgba($color: #5c6d7c, $alpha: 0.6);
+  //     border-radius: 999px;
+  //     min-height: 40px;
+  //   }
+
+  //   &::-webkit-scrollbar-track {
+  //     background: rgba($color: #5c6d7c, $alpha: 0.2);
+  //     border-radius: 999px;
+  //   }
+  // }
+}
+.container-custom {
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: content-box;
+  // @include mq-down(xlg) {
+  //   max-width: 100rem;
+  // }
+  @include mq-down(md) {
+    box-sizing: border-box;
+  }
+}
+:root body {
+  font-family: $font-family-noto-sans-jp;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: $text-dark;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  line-break: strict;
+  margin: 0 !important;
+}
+
+// Common styles
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+// Container helper
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Utility classes
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.is-pc {
+  display: block;
+}
+.is-mtablet {
+  display: none;
+}
+.is-sp {
+  display: none;
+}
+
+@include mq-down(xs) {
+  .is-pc {
+    display: none;
+  }
+
+  .is-sp {
+    display: block;
+  }
+}
+
+@include mq-devices(mtablet) {
+  .is-pc {
+    display: none;
+  }
+  .is-mtablet {
+    display: block;
+  }
+}
+
+@keyframes moveEnd {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.custom-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  @include mq-down(md) {
+    gap: 1.3rem;
+    align-items: center;
+  }
+  .custom-map__iframe {
+    width: 100%;
+    aspect-ratio: 645/252;
+    overflow: hidden;
+    @include mq-down(md) {
+      aspect-ratio: 315/343;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .custom-map__link {
+    display: flex;
+    justify-content: flex-end;
+    a {
+      font-size: 1.2rem;
+      line-height: 1.7rem;
+      color: #52687d;
+      font-weight: $font-weight-medium;
+      font-family: $font-family-noto-sans-jp;
+      text-decoration: underline;
+      transition: all 0.3s ease;
+      padding-right: 2.1rem;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        width: 1.3rem;
+        height: 1.3rem;
+        background-image: url("../images/icon/icon_copy.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0px 0px;
+        transition: background-position 0.3s ease;
+      }
+    }
+  }
+}

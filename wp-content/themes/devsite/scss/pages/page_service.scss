@@ -1,0 +1,110 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.page-service{
+    width: 100%;
+    max-width: 144rem;
+    margin: 0 auto;
+}
+.service-banner{
+    width: 100%;
+    max-width: 144rem;
+    height: 77.6rem;
+    background-image: url("../../images/common/service-banner.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.service-banner__content{
+    width: 100%;
+    max-width: 112rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+.service-banner__content-title{
+    color: #fff;
+    font-weight: $font-weight-semibold;
+    font-size: 5.6rem;
+    line-height: 5.6rem;
+    max-width: 74.3rem;
+}
+.service-banner__content-desc{
+    color: #fff;
+    font-weight: $font-weight-medium;
+    font-size: 1.5rem;
+    line-height: 2.4rem;
+}
+.service-banner__list {
+    display: flex;
+    flex-wrap: nowrap;         // bắt buộc cho scroll ngang
+    gap: 2rem;                 // thay space-between bằng gap
+    position: absolute;
+    width: 100%;
+    max-width: 112rem;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1rem;      // thêm cho đẹp
+    scrollbar-width: thin;     // firefox
+}
+
+.service-banner__card {
+    width: 20%;
+    max-width: 21.12rem;
+    padding: 2rem 2.4rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden; // để không tràn ra ngoài
+}
+
+.service-banner__card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #386FFD;
+
+    transform: translateX(-100%); // bắt đầu bên trái
+    transition: transform 0.4s ease; // chạy mượt
+    z-index: 0;
+}
+
+// nội dung lên trên
+.service-banner__card > * {
+    position: relative;
+    z-index: 1;
+}
+
+// Hover chạy sang phải
+.service-banner__card:hover::after {
+    transform: translateX(0);
+}
+
+.service-banner__card-content{
+    display: flex;
+    flex-direction: column;
+}
+.card-content__header{
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+}
+.card-content__title{
+    color: #fff;
+    font-size: 2.1rem;
+    line-height: 5.6rem;
+    font-weight: $font-weight-bold;
+}
+.card-content__desc{
+    font-size: 1.3rem;
+}

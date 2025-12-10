@@ -1,7 +1,8 @@
 // Imports - Architecture SCSS
+@use "base";
 @use "variables" as *;
 @use "mixins" as *;
-@use "base"; // Reset và Base styles
+// Reset và Base styles
 
 // Page Styles
 @use "layout/header";
